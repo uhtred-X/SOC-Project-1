@@ -11,6 +11,7 @@ In this case `wazuh-manager` is installed in `Ubuntu` and configure as need (`wa
 5. **TheHive Integration - Create Alert in Case Management**: After enrichment, Shuffle integrates with TheHive, the security incident response platform. It creates alerts or incidents in TheHive's case management system, providing detailed information about the security event, enriched IOCs, and any automated response actions taken. TheHive serves as a central repository for managing and tracking security incidents, allowing security analysts to investigate, prioritize, and respond to threats effectively.
 
 Now let's discuss the two scenarios:
+
 **First Scenario:** 
 In this case we use `mimikatz` as a malicious executable in windows, when executed the event will be forwarded from `Wazuh` through `Shuffle` to `Virustotal` but in between the hash (SHA-256) of the malicious executable is strip out using regex and `Virustotal` check for it's reputation and result will be forwarded to emails and `TheHive` which are configured with custom response using `Shuffle`. These steps require lots of configurations like adding custom rules in `wazuh-manager` for detection of `mimikatz` (Mitre T1003 aka Credential dumping) and setting `Wazuh-manager` logs format as well as index-pattern.
 mimikatz not detected before rule configuration:
@@ -29,7 +30,8 @@ Shuffle Workspace:
 ![Shuffle Workspace](workspace-1.png)
 
 
-**Second Scenario:**In this case we will send prompt to user/soc analyst through mail  whether to allow or block the access from an IP address using `Wazuh API`, `Http app` and `User-Input` then response from user/soc analyst will be forwarded to `Wazuh` and the required action will be taken. These steps are not that much easy and required lots of configuration. Documentation is available for all the steps so no need to worry. And for active response we have to add the required entries in `ossec.conf` file under `active-response` section
+**Second Scenario:**
+In this case we will send prompt to user/soc analyst through mail  whether to allow or block the access from an IP address using `Wazuh API`, `Http app` and `User-Input` then response from user/soc analyst will be forwarded to `Wazuh` and the required action will be taken. These steps are not that much easy and required lots of configuration. Documentation is available for all the steps so no need to worry. And for active response we have to add the required entries in `ossec.conf` file under `active-response` section
 
 Agent Control:
 ![Agent Control](agent_control.png)
